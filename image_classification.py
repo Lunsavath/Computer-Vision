@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Spyder Editor
-
-This is a temporary script file.
-"""
 #Importing libraries
 import numpy as np
 import random
@@ -15,7 +9,7 @@ from keras.models import Sequential
 from keras.layers import Activation, Dense, Conv2D, Dropout, MaxPool2D, Flatten
 
 #Creating path to DATADIR
-DATADIR = "/home/anush/work/dataset/"
+DATADIR = "dataset/"
 CATEGORIES = ["dogs", "cats"]
 
 #Mentioning image size
@@ -60,20 +54,26 @@ model = Sequential()
 #Layer 1
 model.add(Conv2D(64, (3,3), strides=(1,1), padding='valid', activation='elu', kernel_initializer='glorot_uniform', input_shape = X.shape[1:]))
 model.add(MaxPool2D(pool_size=(2,2)))
-
+model.add(Dropout(0.25))
 #layer 2
 model.add(Conv2D(64, (3,3), strides=(1,1), padding='valid', activation='elu', kernel_initializer='glorot_uniform'))
 model.add(MaxPool2D(pool_size=(2,2)))
-
+model.add(Dropout(0.25))
 #Layer 3
 model.add(Conv2D(64, (3,3), strides=(1,1), padding='valid', activation='elu', kernel_initializer='glorot_uniform'))
 model.add(MaxPool2D(pool_size=(2,2)))
+model.add(Dropout(0.25))
 
 #Layer 4
+model.add(Conv2D(64, (3,3), strides=(1,1), padding='valid', activation='elu', kernel_initializer='glorot_uniform', input_shape = X.shape[1:]))
+model.add(MaxPool2D(pool_size=(2,2)))
+model.add(Dropout(0.25))
+ 
+#Layer 5
 model.add(Flatten())
 model.add(Dense(64))
 
-#Layer 5
+#Layer 6
 model.add(Dense(1))
 model.add(Activation("sigmoid"))
 
@@ -83,4 +83,5 @@ model.compile(optimizer = "adam", loss = "binary_crossentropy", metrics = ["accu
 #Fitting the data
 model.fit(X, y, batch_size = 50, epochs= 500, validation_split= 0.1)
 
-
+#Saving the weights
+model.save_weights()
