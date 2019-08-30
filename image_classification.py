@@ -14,6 +14,13 @@ import tensorflow as tf
 from keras.models import Sequential
 from keras.layers import Activation, Dense, Conv2D, Dropout, MaxPool2D, Flatten
 
+#Creating path to DATADIR
+DATADIR = "/home/anush/work/dataset/"
+CATEGORIES = ["dogs", "cats"]
+
+#Mentioning image size
+IMG_SIZE = 100
+
 #Creating training data
 
 training_data = []
