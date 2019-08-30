@@ -81,4 +81,6 @@ model.add(Activation("sigmoid"))
 model.compile(optimizer = "adam", loss = "binary_crossentropy", metrics = ["accuracy"])
 
 #Fitting the data
-model.fit(X, y, batch_size = 50, epochs= 1000, validation_split= 0.1)
+model.fit(X, y, batch_size = 50, epochs= 500, validation_split= 0.1)
+
+
